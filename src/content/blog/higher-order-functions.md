@@ -1,19 +1,16 @@
 ---
 author: Mahmoud Bakr
-pubDatetime: 2024-07-18T15:22:00Z
-modDatetime: 2024-09-14T15:21:00Z
-title: Twitter API Conversion & Integration Guide with Ruby on Railsss
-slug: twitter-api-conversion-integration-guide-with-railssss
+pubDatetime: 2024-07-18T16:22:00Z
+modDatetime: 2024-09-14T17:21:00Z
+title: Higher Order Functions in Ruby
+slug: higher-order-functions-in-ruby
 featured: true
 draft: false
 tags:
-  - Ruby on Rails
-  - Twitter API
-  - Conversion API
-  - X
-description:
-  A step-by-step guide for integrating the Twitter Conversion API with Ruby on Rails, including setup, configuration, and handling data.
-canonicalURL: https://mbakr6821.medium.com/twitter-api-conversion-integration-guide-with-ruby-on-rails-d7af6719614e
+  - Ruby
+description: >
+  A simple article to understand higher-order functions in Ruby, covering blocks, procs, and lambdas with practical examples.
+canonicalURL: https://www.linkedin.com/posts/m-bakr_higher-order-functions-activity-6993110708833947648-kiRf?utm_source=share&utm_medium=member_desktop
 ---
 
 Higher-order functions (also referred to as higher-order methods in Ruby) are essential concepts that allow you to write flexible, reusable code. These functions can accept other functions as arguments or return them as a result. In Ruby, blocks, procs, and lambdas are central to implementing higher-order functions. This article provides a step-by-step explanation of each, helping you master how to use them effectively in your code.

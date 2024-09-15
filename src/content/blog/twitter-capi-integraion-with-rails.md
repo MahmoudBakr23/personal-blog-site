@@ -11,7 +11,7 @@ tags:
   - Twitter API
   - Conversion API
   - X
-description:
+description: >
   A step-by-step guide for integrating the Twitter Conversion API with Ruby on Rails, including setup, configuration, and handling data.
 canonicalURL: https://mbakr6821.medium.com/twitter-api-conversion-integration-guide-with-ruby-on-rails-d7af6719614e
 ---
