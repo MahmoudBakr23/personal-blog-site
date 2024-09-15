@@ -12,7 +12,7 @@ tags:
   - Functions
 description:
   A simple article to understand higher-order functions in Ruby, covering blocks, procs, and lambdas with practical examples.
-canonicalURL: https://www.linkedin.com/posts/m-bakr_higher-order-functions-activity-6993110708833947648-kiRf?utm_source=share&utm_medium=member_desktop
+canonicalURL: https://mbakr6821.medium.com/twitter-api-conversion-integration-guide-with-ruby-on-rails-d7af6719614e
 ---
 
 Higher-order functions (also referred to as higher-order methods in Ruby) are essential concepts that allow you to write flexible, reusable code. These functions can accept other functions as arguments or return them as a result. In Ruby, blocks, procs, and lambdas are central to implementing higher-order functions. This article provides a step-by-step explanation of each, helping you master how to use them effectively in your code.
