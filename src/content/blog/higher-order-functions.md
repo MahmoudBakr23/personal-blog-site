@@ -1,7 +1,7 @@
 ---
 author: Mahmoud Bakr
-pubDatetime: 2024-07-18T15:22:00Z
-modDatetime: 2024-09-14T15:21:00Z
+pubDatetime: 2024-09-15T16:02:00Z
+modDatetime: 2024-09-15T17:01:00Z
 title: Higher Order Functions
 slug: higher-order-functions
 featured: true
