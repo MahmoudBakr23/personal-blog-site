@@ -11,7 +11,7 @@ tags:
   - Ruby on Rails
   - Functions
 description:
-	A simple article to understanding higher-order functions in Ruby, covering blocks, procs, and lambdas with practical examples.
+  A simple article to understand higher-order functions in Ruby, covering blocks, procs, and lambdas with practical examples.
 canonicalURL: https://www.linkedin.com/posts/m-bakr_higher-order-functions-activity-6993110708833947648-kiRf?utm_source=share&utm_medium=member_desktop
 ---
 
