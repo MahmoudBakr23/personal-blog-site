@@ -1,7 +1,7 @@
 ---
 author: Mahmoud Bakr
-pubDatetime: 2024-07-18T16:22:00Z
-modDatetime: 2024-09-14T17:21:00Z
+pubDatetime: 2024-09-14T16:22:00Z
+modDatetime: 2024-09-15T17:21:00Z
 title: Higher Order Functions in Ruby
 slug: higher-order-functions-in-ruby
 featured: true
