@@ -12,101 +12,186 @@ tags:
   - Functions
 description:
   A simple article to understand higher-order functions in Ruby, covering blocks, procs, and lambdas with practical examples.
-canonicalURL: https://mbakr6821.medium.com/twitter-api-conversion-integration-guide-with-ruby-on-rails-d7af6719614e
+canonicalURL: https://www.linkedin.com/posts/m-bakr_higher-order-functions-activity-6993110708833947648-kiRf?utm_source=share&utm_medium=member_desktop
 ---
 
-Higher-order functions (also referred to as higher-order methods in Ruby) are essential concepts that allow you to write flexible, reusable code. These functions can accept other functions as arguments or return them as a result. In Ruby, blocks, procs, and lambdas are central to implementing higher-order functions. This article provides a step-by-step explanation of each, helping you master how to use them effectively in your code.
+Integrating a server-side API with platforms like Facebook, Twitter (now known as X), or TikTok is crucial in expanding your business. Whether you’re a seller aiming to broaden your market reach, maximize your product’s exposure, or monitor customer activities on your website, this integration can significantly boost your business development efforts.
 
 ## Table of contents
 ## Introduction
-Higher-order functions (or methods) allow us to pass functions as arguments or return them from other functions. In Ruby, this functionality is mainly implemented through blocks, procs, and lambdas, each with its own unique behavior. Let's walk through these concepts, with examples to illustrate how they work.
+Not all APIs are designed with user-friendliness in mind, making it challenging for developers to accomplish their tasks efficiently. When we embarked on our Ruby on Rails server-side integration with the Twitter API Conversion at [Tadarab](https://tadarab.com/), we were overwhelmed by the extensive documentation and unsure where to begin. So, I’m here to provide you with a concise yet comprehensive guide, complete with code examples and references. 
 
-## Blocks
-Blocks in Ruby are nameless methods that can be passed to other methods as a parameter. While blocks are not objects in Ruby (unlike everything else), they play a significant role in defining higher-order methods. Here’s what you should know:
+## Setting up a Twitter Developer Account
+First, you’ll need to create a developer account on Twitter. Head over to their [website](https://developer.x.com/en) and sign up for a new account. If you’re working for a company, be sure to use your company email for the registration. Once you’ve successfully signed up for your new developer account, navigate to the sidebar and select the “Projects & Apps” option. Here, you’ll create a project that will link your server to your company’s ads account or yours.
 
-- Blocks can't be saved in variables, but they can be passed to methods.
-- Inside a method, we use the `yield` keyword to call a block.
+> Your company or you should set up an [ads account](https://business.x.com/en/help/account-setup/ads-account-creation.html) to manage campaigns and track user events. Keep in mind that after submitting your application, it might take a few days for Twitter to review.
 
-```ruby
-def some_method(a, *rest)
-  yield(a, rest)
-end
+### Generating API Tokens
+We’re almost halfway there. Go back to your developer account, and follow these steps:
+1. Open the new project and app you just created.
+2. Click on the “Keys and tokens” button.
 
-print some_method(1, 1,2,3,4,5) 
-{ # Block starts here
-  |a, rest| rest.include?(a) ? true : false
-} # Block ends here
+> Twitter uses OAuth, which requires several tokens: API Key, API Secret, Access Token, and Access Token Secret.
 
-# Output: true
-```
+3. Click the “Generate” button to create your tokens.
+> Make sure to save them in a safe place, as they won’t be displayed again.
 
-In the example above, `some_method` takes an argument a and a splat parameter `*rest`, which collects additional arguments into an array. The block, passed when calling the method, is executed using `yield`.
+## Getting Rails API app ready
+Now that we have our tokens, we’re ready to write some code. Open your editor and navigate to the Rails project where you want to integrate the API Conversion. Start by creating a new folder called ‘analytics’ or any name you prefer. I find it helpful to have everything neatly structured for easy reading and navigation.
 
-> The splat parameter `*rest` allows multiple arguments to be captured into a single array.
+Inside the ‘analytics’ directory, create a new file for the Twitter Conversion API class. I named mine ‘twitter_capi.rb’.
 
-Let’s look at a simpler block example:
+This file will handle server-side requests to the Twitter ads account. To manage request authentication, I used the ‘oauth’ Ruby gem. We’ll store the four authentication tokens in the environment variables file ‘.env’ and reference them in this class file.
 
 ```ruby
-def greeting
-	puts "Hello!"
-	
-	yield if block_given? # Only call the block if one is passed
-	
-	puts "Goodbye!"
-end
+require 'oauth'
 
-greeting { puts "I am a block!" }
-# Output:
-# Hello!
-# I am a block!
-# Goodbye!
+module Analytics
+  class TwitterCapi
+    CONSUMER_KEY = ENV['TWITTER_API_KEY'] #API KEY
+    CONSUMER_SECRET = ENV['TWITTER_API_SECRET_KEY'] #API SECRET
+    ACCESS_TOKEN = ENV['TWITTER_ACCESS_TOKEN'] #ACCESS KEY
+    ACCESS_TOKEN_SECRET = ENV['TWITTER_ACCESS_SECRET_TOKEN'] #ACCESS SECRET
+  end
+end
 ```
 
-In this example, `greeting` behaves differently depending on whether a block is passed. Using `block_given?` ensures the method can execute normally even without a block.
-
-## Procs
-Now that we’ve covered blocks, let’s dive into procs. A proc (short for procedure) is essentially a saved block that can be stored in variables and passed around as an object.
-
-- Procs are objects, unlike blocks.
-- They can be stored in variables and passed to methods.
-- Procs don't strictly enforce the number of arguments passed.
+Remember, the variable names can be anything you prefer. Now that we have our authentication tokens ready, let’s initialize the connection between our server and the Twitter API.
 
 ```ruby
-def some_method(my_proc, a, *rest)
-	my_proc.call(a, rest)
+require 'oauth'
+
+module Analytics
+  class TwitterCapi
+    CONSUMER_KEY = ENV['TWITTER_API_KEY'] #API KEY
+    CONSUMER_SECRET = ENV['TWITTER_API_SECRET_KEY'] #API SECRET
+    ACCESS_TOKEN = ENV['TWITTER_ACCESS_TOKEN'] #ACCESS KEY
+    ACCESS_TOKEN_SECRET = ENV['TWITTER_ACCESS_SECRET_TOKEN'] #ACCESS SECRET
+
+    def initialize
+      @consumer = OAuth::Consumer.new(CONSUMER_KEY, CONSUMER_SECRET, site: 'https://ads-api.twitter.com', signature_method: 'HMAC-SHA1')
+      @access_token = OAuth::AccessToken.new(@consumer, ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
+    end
+  end
 end
-
-example = proc {
-	|a, rest| rest.keep_if { |e| e >= a }
-} # Proc object stored in the example variable
-
-print some_method(example, 5, 2,4,6,8)
-# Output: [6, 8]
 ```
 
-In this case, the `example` proc is passed to the method, where it is called to filter out values from the `rest` array that are less than `a`.
+The ‘@access_token’ instance variable will be used later to fire the event request to the Twitter API.
 
-> The `keep_if` method modifies the array in place, keeping only elements that satisfy the given condition.
+## Twitter (X) Conversion API Payload
+Now we’re ready to dive into the specifics of the data that will be sent to Twitter. I’ll guide you directly to the essential page in the API documentation, where you’ll find the resource URL and details about the required and optional data that the Twitter API expects in the request payload.
 
-## Lambdas
-Lambdas in Ruby are objects of the Proc class, but they differ from procs in some key aspects:
+One key piece of data is the ‘pixel_id’, a 5-character Universal Website Tag specific to an ad account. After Twitter approves your ads account request.
 
-- Lambdas **do** enforce the number of arguments passed to them.
-- Lambdas are declared using either `lambda` or `->`.
-- To invoke a lambda, use the `call` method or the shorthand `.()`.
+> If it’s your company’s account, ask your manager to send you an invitation with an admin role.
+
+For quick reference, here’s a general outline of the data structure and steps:
+1. Resource URL: This is the endpoint where you’ll send your requests. You’ll find it in the Twitter API documentation.
+2. Required Data: Includes fields like ‘pixel_id’, ‘event_name’, ‘event_time’, and other necessary details specific to your integration.
+3. Optional Data: Additional fields that you can include to enhance your tracking and reporting.
+
+### Steps to Create Event Source and Get PIXEL_ID
+I'm assuming you got the ads account approved by Twitter (X).
+
+1. Login to the ads account [here](https://ads.twitter.com).
+2. Navigate to ‘Tools’ from the navbar.
+3. Select ‘Events Manager’ and hit the ‘Create Event Source’ button create a new event source if you don't have one.
+4. Once created, you'll find the `PIXEL_ID` displayed.
+
+### Firing Your First Event
+Now, let’s use that `PIXEL_ID` to fire our first event to the Twitter API. Keep in mind the other required data we talked about above
 
 ```ruby
-def some_method(a, b, *rest)
-	-> { rest.push(a, b) } # Lambda to push arguments to the rest array
-end
+require 'oauth'
 
-example = some_method("anonymous", "functions", "Lambdas are").call # OR .()
-# Output: ["Lambdas are", "anonymous", "functions"]
+module Analytics
+  class TwitterCapi
+    CONSUMER_KEY = ENV['TWITTER_API_KEY'] #API KEY
+    CONSUMER_SECRET = ENV['TWITTER_API_SECRET_KEY'] #API SECRET
+    ACCESS_TOKEN = ENV['TWITTER_ACCESS_TOKEN'] #ACCESS KEY
+    ACCESS_TOKEN_SECRET = ENV['TWITTER_ACCESS_SECRET_TOKEN'] #ACCESS SECRET
+
+    def initialize
+      @consumer = OAuth::Consumer.new(CONSUMER_KEY, CONSUMER_SECRET, site: 'https://ads-api.twitter.com', signature_method: 'HMAC-SHA1')
+      @access_token = OAuth::AccessToken.new(@consumer, ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
+    end
+
+    def fire_event(payload)
+      request = @access_token.post("/11/measurement/conversions/pixel_id_here", # Resource URL
+                              payload.to_json,
+                              'Content-Type' => 'application/json')
+    end
+  end
+end
 ```
 
-This example showcases the use of a lambda to modify the `rest` array by adding additional elements. It enforces the exact number of arguments (`a` and `b`) when called.
+## Tracking Events in Rails Controllers
+With the `TwitterCAPI` class ready, we're almost there! Now let's use the `fire_event` method to send a request with your desired data to the Twitter API.
+
+If you want to track users who visit specific products on your e-commerce site, such as books, you can integrate the `TwitterCAPI` class into your `BooksController` to send tracking events.
+
+```ruby
+class BooksController < ApplicationController
+  def index
+    @books = Book.all
+  end
+
+  def show
+    @book = Book.find(params[:id])
+  end
+
+  # other methods...
+
+  private
+  # private methods here
+end
+```
+
+We want to track the most visited books, we’ll fire the event with the shown book’s data in the request payload as follows. Take a closer look to the payload in the given code below because there you'll find both the required and optional data you might need.
+
+```ruby
+class BooksController < ApplicationController
+  def index
+    @books = Book.all
+  end
+
+  def show
+    @book = Book.find(params[:id])
+
+    payload = {
+      conversions: [
+        conversion_time: Time.now.utc.strftime("%Y-%m-%dT%H:%M:%S.%LZ"), # This is the time format Twitter expects
+        event_id: "tw-s19t9-kor2f", # This is the event_id that you get from the ads account events manager page for this case, the event will be "Content View", and you can create as many events as you want.
+        identifiers:[
+          {
+            #here the user's data such as email, phone, ip, etc
+          }
+        ],
+        price_currency: 'USD',
+        value: 250.0, # Twitter expects integers to be float
+        conversion_id: "unique_number_here", # This is for deduplication option if you plan to send requests from both backend and frontend
+        contents:[
+          content_id: @book.id.to_s, # Required to be string
+          content_price: @book.price.to_f, # Float because it's a number
+          num_items: 1 # Number of items shown in the viewed page
+        ]
+      ]
+    }
+    Analytics::TwitterCapi.new.fire_event(payload)
+  end
+
+  # other methods...
+
+  private
+  # private methods here
+end
+```
+Of course, this is just an explanatory example, now imagine you can fire events when content is viewed, users signups, payments captured, etc.
+
+You can refactor the method in the application controller or helper and reuse it whenever you want across all your API application files.
+
+To understand more about the deduplication, please read about it [here](https://developer.x.com/en/docs/x-ads-api/measurement/web-conversions/conversion-api#:~:text=If%20you%20use%20both%20pixel%20and%20Conversion%20API%20for%20the%20same%20event).
 
 ## Conclusion
-Higher-order functions give your Ruby code more flexibility and reusability. By mastering blocks, procs, and lambdas, you can pass around behaviors and manipulate data with greater control and fewer lines of code. Whether you're working with basic control structures or more complex algorithms, understanding how these components work will help you build more elegant and efficient solutions.
-
-Thank you for reading, and happy coding!
+If you made it till here, you’re the hero! Thank you very much for reading.
+Stay tuned for the TikTok Conversion API integration guide!
