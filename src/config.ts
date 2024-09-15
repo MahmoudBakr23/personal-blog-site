@@ -42,12 +42,12 @@ export const SOCIALS: SocialObjects = [
     name: "Mail",
     href: "mailto:mbakr6821@gmail.com",
     linkTitle: `Send an email to ${SITE.title}`,
-    active: false,
+    active: true,
   },
   {
     name: "WhatsApp",
     href: "https://wa.me/201146467077",
     linkTitle: `${SITE.title} on WhatsApp`,
-    active: false,
+    active: true,
   },
 ];
