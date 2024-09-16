@@ -103,21 +103,29 @@ Notice the type column in the cars table—it’s key to implementing STI, as it
 To see this in action, let's jump into the Rails console. Follow these steps:
 
 - Create a new company record:
+
 `chevrolet = Company.create(name: 'Chevrolet', location: 'Some location')`
 
 - Add a new sports car for the Chevrolet company:
+
 `chevrolet.sports_cars.create(name: 'Corvette', model: 'STINGRAY 2LT COUPE', price: 80000)`
 
 - List all sport cars for Chevrolet:
+
 `chevrolet.sports_cars`
+
 This will return all records where the `type` is `SportsCar`.
 
 - Try listing luxury cars:
+
 `chevrolet.luxury_cars`
+
 This will return an empty array if no luxury cars are associated with Chevrolet.
 
 - Check all cars for Chevrolet, regardless of type:
+
 `chevrolet.cars`
+
 This will return all car records for the company, both sports and luxury.
 
 ## When to use STI?
