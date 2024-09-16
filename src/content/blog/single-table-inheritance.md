@@ -47,7 +47,7 @@ We can now create subclasses for different types of cars, like sports cars and l
 
 ```ruby
 # sport_car.rb
-class SportCar < Car
+class SportsCar < Car
 end
 
 # luxury_car.rb
@@ -55,7 +55,7 @@ class LuxuryCar < Car
 end
 ```
 
-At this point, both `SportCar` and `LuxuryCar` models are tied to the `cars` table, and the `type` column will help differentiate between the two.
+At this point, both `SportsCar` and `LuxuryCar` models are tied to the `cars` table, and the `type` column will help differentiate between the two.
 
 ### Update the `Company` model relationships
 
@@ -63,7 +63,7 @@ At this point, both `SportCar` and `LuxuryCar` models are tied to the `cars` tab
 class Company < ApplicationRecord
 	has_many :cars
 
-	has_many :sport_cars
+	has_many :sports_cars
 	has_many :luxury_cars
 end
 ```
@@ -76,7 +76,7 @@ After setting up STI, here’s what the database schema will look like:
 ```ruby
 ActiveRecord::Schema[7,0].define(version: some_version_here) do
 	create_table "cars", force: :cascade do |t|
-		t.string "type" # The 'type' column distinguishes the subclass (e.g., SportCar, LuxuryCar). You can add as many as you need!
+		t.string "type" # The 'type' column distinguishes the subclass (e.g., SportsCar, LuxuryCar). You can add as many as you need!
 		t.string "name"
 		t.string "model"
 		t.integer "price"
@@ -106,11 +106,11 @@ To see this in action, let's jump into the Rails console. Follow these steps:
 `chevrolet = Company.create(name: 'Chevrolet', location: 'Some location')`
 
 - Add a new sports car for the Chevrolet company:
-`chevrolet.sport_cars.create(name: 'Corvette', model: 'STINGRAY 2LT COUPE', price: 80000)`
+`chevrolet.sports_cars.create(name: 'Corvette', model: 'STINGRAY 2LT COUPE', price: 80000)`
 
 - List all sport cars for Chevrolet:
-`chevrolet.sport_cars`
-This will return all records where the `type` is `SportCar`.
+`chevrolet.sports_cars`
+This will return all records where the `type` is `SportsCar`.
 
 - Try listing luxury cars:
 `chevrolet.luxury_cars`
