@@ -38,7 +38,7 @@ print some_method(1, 1,2,3,4,5)
 # Output: true
 ```
 
-In the example above, `some_method` takes an argument a and a splat parameter `*rest`, which collects additional arguments into an array. The block, passed when calling the method, is executed using `yield`.
+In the example above, `some_method` takes an argument `a` and a splat parameter `*rest`, which collects additional arguments into an array. The block, passed when calling the method, is executed using `yield`.
 
 > The splat parameter `*rest` allows multiple arguments to be captured into a single array.
 
@@ -46,7 +46,7 @@ Let’s look at a simpler block example:
 
 ```ruby
 def greeting
-	puts "Hello!"
+  puts "Hello!"
 	
 	yield if block_given? # Only call the block if one is passed
 	
