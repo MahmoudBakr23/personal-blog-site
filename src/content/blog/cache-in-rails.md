@@ -3,7 +3,7 @@ author: Mahmoud Bakr
 pubDatetime: 2025-01-25T10:00:00Z
 title: Cache In Rails
 slug: cache-in-rails
-featured: false
+featured: true
 draft: false
 tags:
   - Rails
