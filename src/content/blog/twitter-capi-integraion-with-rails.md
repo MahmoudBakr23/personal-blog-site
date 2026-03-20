@@ -4,7 +4,7 @@ pubDatetime: 2024-07-18T15:22:00Z
 modDatetime: 2024-09-14T15:21:00Z
 title: Twitter API Conversion & Integration Guide with Ruby on Rails
 slug: twitter-api-conversion-integration-guide-with-rails
-featured: true
+featured: false
 draft: false
 tags:
   - Ruby on Rails
