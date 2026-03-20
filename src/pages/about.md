@@ -3,12 +3,9 @@ layout: ../layouts/AboutLayout.astro
 title: "About"
 ---
 
-AstroPaper is a minimal, responsive and SEO-friendly Astro blog theme. I designed and crafted this based on [my personal blog](https://satnaing.dev/blog).
+Hi, I'm **Mahmoud Bakr** — a backend software engineer specializing in Ruby on Rails. I build and scale production APIs, payment systems, and complex business logic. Currently a Senior RoR Backend Engineer at [Tadarab](https://tadarab.com), working remotely from Egypt.
 
-This theme is aimed to be accessible out of the box. Light and dark mode are supported by
-default and additional color schemes can also be configured.
-
-This theme is self-documented \_ which means articles/posts in this theme can also be considered as documentations. So, see the documentation for more info.
+This blog is where my Rails internals, patterns, and engineering notes live — written to be practical and direct.
 
 <div>
   <img src="/assets/dev.svg" class="sm:w-1/2 mx-auto" alt="coding dev illustration">
@@ -16,21 +13,26 @@ This theme is self-documented \_ which means articles/posts in this theme can al
 
 ## Tech Stack
 
-This theme is written in vanilla JavaScript (+ TypeScript for type checking) and a little bit of ReactJS for some interactions. TailwindCSS is used for styling; and Markdown is used for blog contents.
+Backend-heavy, Rails-first.
 
-## Features
+- **Core:** Ruby on Rails 7, Ruby, PostgreSQL, Redis
+- **Background Jobs:** GoodJob, Sidekiq, AWS SQS
+- **Cloud & DevOps:** AWS (ECS, ECR, S3, RDS), Docker, GitHub Actions
+- **Testing:** RSpec, FactoryBot, Capybara
+- **Auth:** Devise, OAuth 2.0 (Google, Facebook, Apple), SAML 2.0
+- **Frontend (supporting):** React, Next.js, TailwindCSS
 
-Here are certain features of this site.
+## Experience
 
-- fully responsive and accessible
-- SEO-friendly
-- light & dark mode
-- fuzzy search
-- super fast performance
-- draft posts
-- pagination
-- sitemap & rss feed
-- highly customizable
+- **Senior RoR Backend Engineer** — Tadarab, Kuwait (remote) · Nov 2023 – Present
+  Re-architected a 5-gateway payment system (Checkout.com, PayPal, Tap, Tamara, Apple Pay), built AI-powered automations that cut support ticket load by 90%+, and shipped a full B2B SaaS platform with multi-tenant architecture and independent billing.
 
-If you like this theme, you can star/contribute to the [repo](https://github.com/satnaing/astro-paper).  
-Or you can even give any feedback via my [email](mailto:contact@satnaing.dev).
+- **Full Stack Engineer** — path2live, UK (remote) · Oct 2022 – Sep 2023
+  Founding engineer; shipped production UI with React and Next.js in a fast-paced early-stage environment.
+
+- **Senior Code Reviewer & Technical Mentor** — Microverse (remote) · Nov 2021 – Dec 2023
+  Mentored 100+ developers worldwide in Ruby on Rails and JavaScript. Promoted to Senior Reviewer within 10 months.
+
+---
+
+Feel free to reach out via [LinkedIn](https://www.linkedin.com/in/m-bakr/) or [email](mailto:mbakr6821@gmail.com).
