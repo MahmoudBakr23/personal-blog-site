@@ -3,13 +3,11 @@ layout: ../layouts/AboutLayout.astro
 title: "About"
 ---
 
-Hi, I'm **Mahmoud Bakr** — a backend engineer with a focus on Ruby on Rails. My day-to-day is designing production-grade APIs, async billing systems, and multi-tenant platforms — work where both correctness and performance matter.
+Hi, I'm **Mahmoud Bakr** — a backend engineer who works primarily with Ruby on Rails. I spend most of my time on APIs, background jobs, payment integrations, and the kind of backend plumbing that keeps things running in production.
 
-I'm currently a Senior RoR Backend Engineer at [Tadarab](https://tadarab.com) (Kuwait, remote), an e-learning platform. There I re-architected a 5-gateway payment system (Checkout.com, PayPal, Tap, Tamara, Apple Pay) using GoodJob and Redis to eliminate webhook race conditions and cut failed transactions significantly. I also built an AI-powered automation layer that reduced support ticket volume by 90%+, designed a modular subscription, wallet, and referral engine, and shipped a parallel B2B SaaS platform — multi-tenant, org-scoped access control, independent billing — on top of an existing consumer product.
+Currently working remotely as a Senior RoR Engineer at [Tadarab](https://tadarab.com), an e-learning platform based in Kuwait.
 
-Before that, I was a founding full-stack engineer at [path2live](https://path2live.com) (UK), and a Senior Code Reviewer & Technical Mentor at Microverse, where I reviewed code and mentored 100+ developers worldwide across Ruby on Rails and JavaScript.
-
-This blog is where I write about Rails internals, patterns, and the things I find genuinely useful in backend work — no filler, just the stuff that matters.
+This blog is where I write about Rails internals, patterns, and things I find genuinely useful in backend work.
 
 <div>
   <img src="/assets/dev.svg" class="sm:w-1/2 mx-auto" alt="coding dev illustration">
@@ -29,13 +27,8 @@ Backend-heavy, Rails-first.
 ## Experience
 
 - **Senior RoR Backend Engineer** — Tadarab, Kuwait (remote) · Nov 2023 – Present
-  Payment systems, async job architecture, AI-driven automations, B2B SaaS platform, multi-tenant access control, and platform-wide integrations across SendGrid, pg_search, and 5 ad conversion platforms.
-
 - **Full Stack Engineer** — path2live, UK (remote) · Oct 2022 – Sep 2023
-  Founding engineer in an early-stage product; shipped production UI with React and Next.js alongside a cross-functional remote team.
-
 - **Senior Code Reviewer & Technical Mentor** — Microverse (remote) · Nov 2021 – Dec 2023
-  Mentored 100+ developers worldwide in Ruby on Rails and JavaScript. Promoted to Senior Reviewer within 10 months for leading quality initiatives.
 
 ---
 
