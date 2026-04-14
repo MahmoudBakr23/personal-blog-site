@@ -1,6 +1,6 @@
 ---
 author: Mahmoud Bakr
-pubDatetime: 2026-04-15T08:00:00Z
+pubDatetime: 2026-04-14T08:00:00Z
 title: "Idempotency in Distributed Systems: 5 Patterns Every Backend Engineer Should Know"
 slug: idempotency-patterns
 featured: true

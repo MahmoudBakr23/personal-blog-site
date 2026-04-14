@@ -1,6 +1,6 @@
 ---
 author: Mahmoud Bakr
-pubDatetime: 2026-04-15T10:00:00Z
+pubDatetime: 2026-04-14T10:00:00Z
 title: "Webhooks: How External Systems Talk Back to Yours — Securely"
 slug: webhooks-explained
 featured: false
