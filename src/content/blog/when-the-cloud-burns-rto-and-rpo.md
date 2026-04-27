@@ -3,7 +3,7 @@ author: Mahmoud Bakr
 pubDatetime: 2026-03-10T10:00:00Z
 title: "When the Cloud Burns: Why RTO and RPO Aren't Just Buzzwords"
 slug: when-the-cloud-burns-rto-and-rpo
-featured: true
+featured: false
 draft: false
 tags:
   - Architecture
