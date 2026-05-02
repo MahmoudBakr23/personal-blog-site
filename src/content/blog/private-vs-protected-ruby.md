@@ -3,7 +3,7 @@ author: Mahmoud Bakr
 pubDatetime: 2026-04-27T08:00:00Z
 title: "Private vs Protected in Ruby: Who's Allowed to Be the Receiver?"
 slug: private-vs-protected-ruby
-featured: true
+featured: false
 draft: false
 tags:
   - Ruby
